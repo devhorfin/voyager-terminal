@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "note": "Curated future catalysts for Voyager 1. Every entry links to its official NASA/JPL source. 'kind': milestone | engineering | projected. Dates with precision 'exact' come from NASA; 'approx' are NASA's own rounded estimates; 'projected' are this site's calculations from public data.",
+    "updated": "2026-11-02"
+  },
+  "items": [
+    {
+      "date": "2026-11-18T10:16:07Z", "precision": "exact", "kind": "milestone",
+      "title": "One light-day from Earth",
+      "body": "First human-made object whose radio signal takes a full day to arrive. NASA gives the moment as 2:16:07 a.m. PST on Nov. 18, 2026, at about 25.902 billion km.",
+      "source": "NASA Voyager · Where are they now", "url": "https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/"
+    },
+    {
+      "date": "2026-12-01T00:00:00Z", "precision": "approx", "kind": "engineering",
+      "title": "Power reconfiguration follow-up",
+      "body": "Voyager 1's power-stretching work finished in September 2026 and a 48-hour communications pause on Oct. 20 resolved itself. The team continues to swap powered components for lower-power alternatives to keep the craft warm.",
+      "source": "NASA Voyager blog · Oct 29, 2026", "url": "https://science.nasa.gov/blogs/voyager/2026/10/29/nasas-voyager-1-conserves-power-resolves-brief-communications-pause/"
+    },
+    {
+      "date": "2027-09-05T00:00:00Z", "precision": "exact", "kind": "milestone",
+      "title": "50 years since launch",
+      "body": "Voyager 1 left Cape Canaveral on Sept. 5, 1977 aboard a Titan IIIE-Centaur. Its twin launched sixteen days earlier on a slower path.",
+      "source": "NASA Voyager 1 mission page", "url": "https://science.nasa.gov/mission/voyager/voyager-1/"
+    },
+    {
+      "date": "2028-01-01T00:00:00Z", "precision": "approx", "kind": "engineering",
+      "title": "Further instrument shutdowns expected",
+      "body": "With output falling about 4 watts a year, NASA expects to keep turning off science instruments through the late 2020s and early 2030s. Only the magnetometer and the plasma-wave subsystem remain on Voyager 1 (NASA status Apr. 17, 2026).",
+      "source": "NASA · Instrument shut off to keep spacecraft operating", "url": "https://science.nasa.gov/blogs/voyager/2026/04/17/nasa-shuts-off-instrument-on-voyager-1-to-keep-spacecraft-operating/"
+    },
+    {
+      "date": "2030-01-01T00:00:00Z", "precision": "approx", "kind": "engineering",
+      "title": "Last science instrument",
+      "body": "NASA has said the Voyagers could keep at least one instrument operating into the early 2030s if power is managed carefully.",
+      "source": "NASA · Turns off two Voyager science instruments", "url": "https://science.nasa.gov/blogs/voyager/2025/03/05/nasa-turns-off-2-voyager-science-instruments-to-extend-mission/"
+    },
+    {
+      "date": "2036-01-01T00:00:00Z", "precision": "approx", "kind": "milestone",
+      "title": "Silent Voyager",
+      "body": "Around 2036 the radioisotope generators can no longer run the transmitter. Earth stops hearing Voyager 1. This observatory keeps following it on the fitted trajectory and labels everything after this as projected.",
+      "source": "NASA Voyager mission overview", "url": "https://science.nasa.gov/mission/voyager/"
+    },
+    {
+      "date": "2325-01-01T00:00:00Z", "precision": "approx", "kind": "projected",
+      "title": "Inner edge of the Oort cloud",
+      "body": "NASA estimates Voyager 1 needs about 300 years to reach the inner boundary of the Oort cloud, the shell of icy bodies around the solar system.",
+      "source": "NASA · Oort Cloud", "url": "https://science.nasa.gov/solar-system/oort-cloud/"
+    },
+    {
+      "date": "32300-01-01T00:00:00Z", "precision": "approx", "kind": "projected",
+      "title": "Far side of the Oort cloud",
+      "body": "NASA: \"probably another 30,000 years to exit the far side.\" Voyager 1 will still be inside the Sun's gravitational neighbourhood.",
+      "source": "NASA · Oort Cloud", "url": "https://science.nasa.gov/solar-system/oort-cloud/"
+    },
+    {
+      "date": "42000-01-01T00:00:00Z", "precision": "approx", "kind": "projected",
+      "title": "Closest pass to Gliese 445",
+      "body": "NASA: in about 40,000 years Voyager 1 drifts within 1.6 light-years of AC+79 3888 (Gliese 445), a red dwarf in Camelopardalis. This site's straight-line projection from Gaia DR3 motion gives about 1.9 light-years in year ~46,000.",
+      "source": "NASA Voyager 1 mission page", "url": "https://science.nasa.gov/mission/voyager/voyager-1/"
+    }
+  ]
+}

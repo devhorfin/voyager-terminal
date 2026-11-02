@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="./assets/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voyager 1 — Basic mode · live numbers</title>
+<meta name="description" content="Voyager 1 right now: distance from Earth and Sun, speed, one-way light time, instrument status and the one-light-day countdown. Plain, fast page.">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090910;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--fg:#f2f2f6;--fg2:rgba(242,242,246,.62);--fg3:rgba(242,242,246,.38);--accent:#e2b95c;--accent2:#f0d08a;--amber:#9ec5ff;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Inter',system-ui,sans-serif;--disp:'Sora',var(--sans)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);padding:calc(env(safe-area-inset-top) + 20px) 16px calc(env(safe-area-inset-bottom) + 40px);max-width:980px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.brand{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}.brand span{color:var(--fg3);margin-left:8px}
+.pill{border:1px solid var(--line2);color:var(--fg);border-radius:999px;padding:10px 14px;font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:rgba(255,255,255,.02)}
+h1{font:200 clamp(34px,6vw,64px)/1 var(--disp);letter-spacing:-.02em;margin:34px 0 8px}
+.lede{color:var(--fg2);max-width:60ch;line-height:1.5}
+.badge{display:inline-flex;gap:7px;align-items:center;margin-top:14px;padding:6px 9px;border:1px solid var(--line2);border-radius:6px;font:500 9.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg2)}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:26px}
+.cell{background:var(--bg);padding:18px 16px}
+.cell .v{font:300 clamp(24px,3.4vw,38px)/1 var(--disp);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cell .v small{font-size:.5em;color:var(--fg2);margin-left:4px}
+.cell .k{margin-top:8px;font:500 9.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
+.cell .k b{color:var(--accent2);font-weight:500}.cell .k b.amber{color:var(--amber)}
+h2{font:300 clamp(20px,2.6vw,28px)/1.2 var(--disp);letter-spacing:-.01em;margin:44px 0 14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 9.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--fg3)}
+td.on{color:var(--accent2)}td.off{color:var(--fg3)}
+.tl{list-style:none}
+.tl li{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.tl time{font:500 11px/1.5 var(--mono);letter-spacing:.08em;color:var(--fg2)}
+.tl p{color:var(--fg2);margin-top:3px;font-size:13.5px;line-height:1.5}
+.tl a{color:var(--accent2);text-decoration:none;font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.tag{display:inline-block;margin-left:8px;padding:3px 6px;border:1px solid var(--line2);border-radius:4px;font:500 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg3)}
+.tag.p{color:var(--fg2)}.tag.n{color:var(--amber);border-color:rgba(158,197,255,.4)}
+footer{margin-top:50px;padding-top:16px;border-top:1px solid var(--line);font:400 11px/1.7 var(--mono);color:var(--fg3);letter-spacing:.04em}
+footer a{color:var(--fg2)}
+@media (max-width:600px){.tl li{grid-template-columns:1fr;gap:4px}}
+
+.logbody .src{font:400 10.5px/1.6 var(--mono);letter-spacing:.06em;color:var(--fg3);padding:10px 0}
+.cat{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.cat-w time{display:block;font:500 11px/1.4 var(--mono);letter-spacing:.08em;color:var(--fg2)}
+.cat-w b{display:block;margin-top:6px;font:300 22px/1 var(--disp);color:var(--fg);font-variant-numeric:tabular-nums}
+.cat.past .cat-w b{color:var(--fg3);font-size:14px}
+.cat-b h4{font:400 16px/1.3 var(--sans);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cat-b p{margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--fg2);max-width:60ch}
+.cat-b a,.news a{color:var(--accent2);text-decoration:none;font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.cat-b a{display:inline-block;margin-top:8px}
+.tg{display:inline-block;padding:3px 6px;border:1px solid var(--line2);border-radius:4px;font:500 8.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);font-style:normal}
+.tg.n{color:var(--amber);border-color:rgba(158,197,255,.4)}.tg.p{color:var(--fg2)}
+.news{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.news time{font:500 11px/1.5 var(--mono);color:var(--fg2)}
+.news h4 a{font:400 15.5px/1.35 var(--sans);letter-spacing:0;text-transform:none;color:var(--fg)}
+.news p{margin-top:5px;font-size:13px;line-height:1.5;color:var(--fg2)}
+@media (max-width:600px){.cat,.news{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body>
+<header><div class="brand">Voyager 1<span>Observatory · basic mode</span></div><a class="pill" href="./index.html">Open the 3D observatory</a></header>
+
+<h1>Voyager 1, right now</h1>
+<p class="lede">Humanity's most distant object, on a fitted trajectory from JPL Horizons. Numbers below are live estimates from that trajectory; dated facts are labelled with their NASA source.</p>
+<div class="badge"><i></i><span id="status">Live estimate · JPL Horizons</span></div>
+
+<div class="grid" id="grid">
+  <div class="cell"><div class="v"><span id="km">—</span><small>km</small></div><div class="k">from Earth · <b>live estimate</b></div></div>
+  <div class="cell"><div class="v"><span id="mi">—</span><small>mi</small></div><div class="k">from Earth</div></div>
+  <div class="cell"><div class="v"><span id="au">—</span><small>AU</small></div><div class="k">from the Sun</div></div>
+  <div class="cell"><div class="v"><span id="lt">—</span></div><div class="k">one-way light time</div></div>
+  <div class="cell"><div class="v"><span id="v">—</span><small>km/s</small></div><div class="k">speed · heliocentric</div></div>
+  <div class="cell"><div class="v"><span id="rr">—</span><small>km/s</small></div><div class="k">receding from Earth</div></div>
+  <div class="cell"><div class="v"><span id="cd">—</span></div><div class="k">until one light-day · <b class="amber">NASA/JPL time</b></div></div>
+  <div class="cell"><div class="v"><span id="mday">—</span><small>days</small></div><div class="k">in flight since 5 Sep 1977</div></div>
+</div>
+
+<h2>Spacecraft health <span class="tag n">NASA · updated 17 Apr 2026</span></h2>
+<table>
+  <thead><tr><th>Instrument</th><th>Voyager 1</th><th>Voyager 2</th></tr></thead>
+  <tbody>
+    <tr><td>Magnetometer (MAG)</td><td class="on">On</td><td class="on">On</td></tr>
+    <tr><td>Plasma Wave Subsystem (PWS)</td><td class="on">On</td><td class="on">On</td></tr>
+    <tr><td>Cosmic Ray Subsystem (CRS)</td><td class="off">Off · 25 Feb 2025, to save power</td><td class="on">On</td></tr>
+    <tr><td>Low-Energy Charged Particles (LECP)</td><td class="off">Off · 17 Apr 2026, to save power</td><td class="off">Off · 24 Mar 2025</td></tr>
+    <tr><td>Plasma Science (PLS)</td><td class="off">Off · 2007, degraded</td><td class="off">Off · 26 Sep 2024</td></tr>
+    <tr><td>Cameras (ISS)</td><td class="off">Off · 14 Feb 1990</td><td class="off">Off · 1989</td></tr>
+    <tr><td>UVS · IRIS · PPS · PRA</td><td class="off">Off · 1980–2016</td><td class="off">Off · 1991–2008</td></tr>
+  </tbody>
+</table>
+<p class="lede" style="margin-top:12px;font-size:13px">Power: three radioisotope generators, output falling about 4 watts a year. NASA's most recent update: power-conservation work finished in September 2026 and a 48-hour communications pause on 20 Oct 2026 resolved itself. Source: <a style="color:var(--accent2)" href="https://science.nasa.gov/blogs/voyager/2026/10/29/nasas-voyager-1-conserves-power-resolves-brief-communications-pause/">NASA Voyager blog, 29 Oct 2026</a>.</p>
+
+<h2>Upcoming catalysts <span class="tag n">every item links to NASA/JPL</span></h2>
+<div id="cats" class="logbody"></div>
+
+<h2>Mission updates <span class="tag" id="newsTag">NASA blog</span></h2>
+<div id="news" class="logbody"></div>
+
+<h2>Milestones</h2>
+<ul class="tl">
+  <li><time>5 Sep 1977</time><div>Launch from Cape Canaveral on a Titan IIIE-Centaur.<span class="tag">past</span></div></li>
+  <li><time>5 Mar 1979</time><div>Jupiter closest approach, 349,000 km.<span class="tag">past</span></div></li>
+  <li><time>12 Nov 1980</time><div>Saturn and Titan flyby; path bent 35° out of the ecliptic.<span class="tag">past</span></div></li>
+  <li><time>14 Feb 1990</time><div>Pale Blue Dot and the Family Portrait; cameras off afterwards.<span class="tag">past</span></div></li>
+  <li><time>25 Aug 2012</time><div>Crossed the heliopause into interstellar space at 121 AU.<span class="tag">past</span></div></li>
+  <li><time>18 Nov 2026</time><div>First human-made object one light-day from Earth, 10:16:07 UTC (2:16:07 a.m. PST).<span class="tag n">next</span><p>Distance at that moment: about 25.902 billion km (16.094 billion miles).</p><a href="https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/">NASA source ↗</a></div></li>
+  <li><time>late 2020s–2030s</time><div>Remaining instruments switched off one by one as power declines.<span class="tag p">projected</span><a href="https://science.nasa.gov/blogs/voyager/">NASA Voyager blog ↗</a></div></li>
+  <li><time>~2036</time><div>Communication expected to end as power runs out: Silent Voyager.<span class="tag p">projected</span><a href="https://science.nasa.gov/mission/voyager/">NASA mission page ↗</a></div></li>
+  <li><time>~2300</time><div>Reaches the inner edge of the Oort cloud, about 300 years from now.<span class="tag p">projected</span><a href="https://science.nasa.gov/solar-system/oort-cloud/">NASA Oort cloud page ↗</a></div></li>
+  <li><time>~30,000 yr</time><div>Leaves the far side of the Oort cloud.<span class="tag p">projected</span><a href="https://science.nasa.gov/solar-system/oort-cloud/">NASA Oort cloud page ↗</a></div></li>
+  <li><time>~40,000 yr</time><div>Passes within about 1.6 light-years of the star Gliese 445 (our own straight-line projection from Gaia DR3 motion: about 1.9 ly in year <span id="encYear">—</span>).<span class="tag p">projected</span><a href="https://science.nasa.gov/mission/voyager/voyager-1/">NASA source ↗</a></div></li>
+</ul>
+
+<footer>Positions: JPL Horizons (fitted trajectory, not live tracking) · Earth from JPL approximate planetary elements · one light-day time: NASA/JPL · Build <span id="build"></span><br>Not affiliated with NASA or JPL.</footer>
+
+<script type="module">
+import * as A from './astro.js';
+const LAUNCH = A.isoToJD('1977-09-05T12:56:00Z'), LD = A.isoToJD('2026-11-18T10:16:07Z');
+const eph = await (await fetch('./data/ephemeris.json')).json(); const V1 = new A.Trajectory(eph.v1, 'Voyager 1');
+const $ = (s) => document.getElementById(s); $('build').textContent = '0.6.1';
+function tick() {
+  const jd = A.jdNow(), t = A.telemetry(V1, jd);
+  $('km').textContent = A.fmtInt(t.distEarthKm); $('mi').textContent = A.fmtInt(t.distEarthMi); $('au').textContent = t.distSunAU.toFixed(3);
+  $('lt').textContent = A.fmtLightTime(t.lightTimeS); $('v').textContent = t.speedSunKmS.toFixed(2); $('rr').textContent = t.rangeRateKmS.toFixed(2);
+  const r = (LD - jd) * 86400; if (r > 0) { const h = A.fmtHMS(r); $('cd').textContent = `${h.d}d ${String(h.h).padStart(2,'0')}:${String(h.m).padStart(2,'0')}:${String(h.s).padStart(2,'0')}`; } else $('cd').textContent = 'Reached';
+  $('mday').textContent = A.fmtInt(jd - LAUNCH);
+  $('status').textContent = t.status === 'projected' ? 'Projected · beyond the Horizons span' : 'Live estimate · JPL Horizons';
+}
+tick(); setInterval(tick, 1000);
+import('./log.js').then(async (L) => { const cats = await L.loadCatalysts(); const root = $('cats'); root.innerHTML = L.renderCatalysts(cats); setInterval(() => L.tickCountdowns(root, cats), 1000); const news = await L.loadNews(); $('news').innerHTML = L.renderNews(news); $('newsTag').textContent = news.live ? 'live · NASA blog' : 'snapshot · NASA blog'; });
+const enc = A.glieseEncounter(V1, V1.jd1); $('encYear').textContent = A.fmtInt(A.yearOf(enc.jd));
+</script>
+</body>
+</html>

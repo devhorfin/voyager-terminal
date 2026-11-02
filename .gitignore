@@ -1,0 +1,13 @@
+# build output and deploy bundles
+dist/
+deploy/
+.netlify/
+# QA captures, design references and working notes
+qa/
+design-refs/
+learnings/
+ELEVATION-PLAN-*.md
+tools/patch-*.py
+.DS_Store
+Thumbs.db
+assets/voyager.glb
